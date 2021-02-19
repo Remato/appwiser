@@ -1,7 +1,7 @@
 import React from 'react';
-
 import { createStackNavigator } from '@react-navigation/stack';
 
+// ----- PAGES ----- //
 import SignIn from '../pages/SignIn';
 
 const Auth = createStackNavigator();
@@ -15,6 +15,7 @@ const AuthRoutes: React.FC = () => (
   >
     <Auth.Screen name="SignIn" component={SignIn} />
   </Auth.Navigator>
+
 );
 
 export default AuthRoutes;

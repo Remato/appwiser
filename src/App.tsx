@@ -6,15 +6,13 @@ import { NavigationContainer } from '@react-navigation/native';
 
 import Routes from './routes';
 
-const App: React.FC = () => {
-  return (
-    <NavigationContainer>
-      <StatusBar backgroundColor="#130525" />
-      <View style={{ flex: 1, backgroundColor: '#130525' }}>
-        <Routes />
-      </View>
-    </NavigationContainer>
-  );
-};
+const App: React.FC = () => (
+  <NavigationContainer>
+    <StatusBar barStyle="light-content" backgroundColor="#130525" />
+    <View style={{ flex: 1, backgroundColor: '#130525' }}>
+      <Routes />
+    </View>
+  </NavigationContainer>
+);
 
 export default App;

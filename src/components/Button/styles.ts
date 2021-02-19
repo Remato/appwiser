@@ -12,7 +12,8 @@ export const GradientButton = styled(LinearGradient).attrs({
   width: 168px;
   height: 48px;
 
-  box-shadow: 0px 10px 25px #cf99db;
+
+  box-shadow: 0px 10px 25px #CF99DB;
   border-radius: 8px;
 `;
 

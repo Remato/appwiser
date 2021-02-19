@@ -1,10 +1,5 @@
 import React, {
-  useEffect,
-  useRef,
-  useState,
-  useCallback,
-  useImperativeHandle,
-  forwardRef,
+  useEffect, useRef, useState, useCallback, useImperativeHandle, forwardRef,
 } from 'react';
 import { TextInputProps } from 'react-native';
 
@@ -12,7 +7,7 @@ import { useField } from '@unform/core';
 
 import { Container, TitleTextInput, TextInput } from './styles';
 
-interface InputProps extends TextInputProps {
+interface InputProps extends TextInputProps{
   name: string;
 }
 
@@ -24,13 +19,12 @@ interface InputRef {
   focus(): void;
 }
 
-const Input: React.RefForwardingComponent<InputRef, InputProps> = (
-  { name, ...rest },
-  ref,
-) => {
+const Input: React.RefForwardingComponent<InputRef, InputProps> = ({ name, ...rest }, ref) => {
   const inputElementRef = useRef<any>(null);
 
-  const { registerField, defaultValue = '', fieldName, error } = useField(name);
+  const {
+    registerField, defaultValue = '', fieldName, error,
+  } = useField(name);
 
   const inputValueRef = useRef<InputValueReference>({ value: defaultValue });
 
@@ -82,7 +76,7 @@ const Input: React.RefForwardingComponent<InputRef, InputProps> = (
           keyboardAppearance="dark"
           placeholderTextColor="#989FDB"
           defaultValue={defaultValue}
-          onChangeText={value => {
+          onChangeText={(value) => {
             inputValueRef.current.value = value;
           }}
           {...rest}
