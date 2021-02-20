@@ -19,4 +19,31 @@ A estrutura da aplicação foi dividida nas pastas
 
 **Não consegui finalizar a aplicação pois a lib que eu utilizei teve problema de incompatibilidade, com o React e foi uma nova versão saiu hoje, link da Issue abaixo**
 
+## Instalação
+
+```bash
+git clone https://github.com/Remato/appwiser
+cd appwiser && yarn
+```
+
+## Execução
+Para simular em android:
+```bash
+yarn android
+```
+
+Para simular em IoS:
+```bash
+cd ios && pod install && cd ..
+yarn ios
+```
+
+## Screens
+
+![Tela inicial](https://i.imgur.com/dHynCym.jpeg)
+
+![Toast Erro](https://i.imgur.com/42QMwcH.jpg)
+
+![Erro na Input](https://i.imgur.com/bs035Ig.jpg)
+
 [Issue](https://github.com/unform/unform/issues/356#issuecomment-782324905) Unform -> Rect Native
