@@ -1,4 +1,4 @@
-import React, { useCallback, useRef } from 'react';
+import React, { useCallback, useState, useRef } from 'react';
 
 import {
   TextInput, ScrollView, KeyboardAvoidingView, Platform, Alert,
@@ -14,6 +14,8 @@ import logoImg from '../../assets/wall.png';
 
 import Input from '../../components/Input';
 import Button from '../../components/Button';
+
+//import api from '../../services/api';
 
 import {
   BackgroundImage,
@@ -33,6 +35,10 @@ interface SignInFormData {
 const SignIn: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
   const passwordInputRef = useRef<TextInput>(null);
+  const [emailError, setEmailError] = useState(false);
+  const [passwordError, setPasswordError] = useState(false);
+
+
 
   const handleSignIn = useCallback(
     async (data: SignInFormData) => {
@@ -55,20 +61,29 @@ const SignIn: React.FC = () => {
         //   password: data.password,
         // });
 
-        // history.push('/dashboard');
       } catch (err) {
+        Alert.alert(
+          'Erro na autenticação',
+          'Ocorreu um erro ao fazer login, cheque as credenciais.',
+        );
+
         if (err instanceof Yup.ValidationError) {
           const errors = getValidationErrors(err);
+
+          console.log(err);
+
+          if(!!errors.email){
+            setEmailError(true);
+          }
+
+          if(!!errors.password){
+            setPasswordError(true);
+          }
 
           formRef.current?.setErrors(errors);
 
           return;
         }
-
-        Alert.alert(
-          'Erro na autenticação',
-          'Ocorreu um erro ao fazer login, cheque as credenciais.',
-        );
       }
     },
     [],
@@ -97,6 +112,7 @@ const SignIn: React.FC = () => {
 
             <Form ref={formRef} onSubmit={handleSignIn}>
               <Input
+                error={emailError}
                 autoCorrect={false}
                 autoCapitalize="none"
                 keyboardType="email-address"
@@ -109,6 +125,7 @@ const SignIn: React.FC = () => {
               />
 
               <Input
+                error={passwordError}
                 ref={passwordInputRef}
                 secureTextEntry
                 name="SENHA"
@@ -127,7 +144,6 @@ const SignIn: React.FC = () => {
 
               </Button>
             </Form>
-
           </SignInBox>
 
           <ForgotPassword onPress={() => { console.log('forgot'); }}>

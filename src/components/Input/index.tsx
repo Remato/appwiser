@@ -5,10 +5,13 @@ import { TextInputProps } from 'react-native';
 
 import { useField } from '@unform/core';
 
-import { Container, TitleTextInput, TextInput } from './styles';
+import { Container, TitleTextInput, TextInput, IconView } from './styles';
+
+import Icon from 'react-native-vector-icons/Feather';
 
 interface InputProps extends TextInputProps{
   name: string;
+  error: boolean;
 }
 
 interface InputValueReference {
@@ -19,11 +22,11 @@ interface InputRef {
   focus(): void;
 }
 
-const Input: React.RefForwardingComponent<InputRef, InputProps> = ({ name, ...rest }, ref) => {
+const Input: React.ForwardRefRenderFunction<InputRef, InputProps> = ({ error, name, ...rest }, ref) => {
   const inputElementRef = useRef<any>(null);
 
   const {
-    registerField, defaultValue = '', fieldName, error,
+    registerField, defaultValue = '', fieldName,
   } = useField(name);
 
   const inputValueRef = useRef<InputValueReference>({ value: defaultValue });
@@ -66,9 +69,9 @@ const Input: React.RefForwardingComponent<InputRef, InputProps> = ({ name, ...re
   return (
     <>
       <TitleTextInput>{name}</TitleTextInput>
-      <Container>
+      <Container >
         <TextInput
-          isErrored={!!error}
+          error={error}
           isFocused={isFocused}
           ref={inputElementRef}
           onFocus={handleInputFocus}
@@ -80,7 +83,8 @@ const Input: React.RefForwardingComponent<InputRef, InputProps> = ({ name, ...re
             inputValueRef.current.value = value;
           }}
           {...rest}
-        />
+        >
+        </TextInput>
       </Container>
     </>
   );

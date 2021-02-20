@@ -19,3 +19,6 @@ const AuthRoutes: React.FC = () => (
 );
 
 export default AuthRoutes;
+
+// trocar aqui para 2 rotas, uma de autenticacao e a do app wiser
+// para adicionar os hooks

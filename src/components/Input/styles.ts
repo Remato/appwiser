@@ -3,6 +3,7 @@ import styled, { css } from 'styled-components/native';
 interface TextInputProps {
   isErrored: boolean;
   isFocused: boolean;
+  error: boolean;
 }
 
 export const Container = styled.View`
@@ -20,6 +21,8 @@ export const TitleTextInput = styled.Text`
   font-family: 'Montserrat-Regular';
 `;
 
+export const IconView = styled.View``;
+
 export const TextInput = styled.TextInput<TextInputProps>`
   flex: 1;
   align-items: center;
@@ -33,7 +36,13 @@ export const TextInput = styled.TextInput<TextInputProps>`
   border: 1px solid #989fdb;
 
   ${props =>
-    props.isErrored &&
+    props.isFocused &&
+    css`
+      border: 1px solid #989fdb;
+    `}
+
+  ${props =>
+    props.error &&
     css`
       border: 1px solid #ff377f;
     `}
